@@ -4,7 +4,7 @@
   "main": "runner.js",
   "insomnia": {
     "name": "index",
-    "description": "Allows you to run a WebServices from a folder multiple times"
+    "description": "Allows you to run WebServices from a folder multiple times"
   },
   "dependencies": [],
   "devDependencies": []
