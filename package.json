@@ -1,0 +1,11 @@
+{
+  "name": "insomna-plugin-runner",
+  "version": "0.0.1",
+  "main": "runner.js",
+  "insomnia": {
+    "name": "index",
+    "description": "Allows you to run a WebServices from a folder multiple times"
+  },
+  "dependencies": [],
+  "devDependencies": []
+}
