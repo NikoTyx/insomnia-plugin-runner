@@ -1,5 +1,5 @@
 function format(results) {
-    let html = '<li>Name | Status code</li>';
+    let html = '<li>Name | Time spent | Status code</li>';
 
     for (const result of results) {
         let code = result.code;
@@ -14,7 +14,7 @@ function format(results) {
             css = 'red'
         }
 
-        html += `<li>${result.name} | <span style="color:${css}">${result.code}</span></li>`
+        html += `<li>${result.name} | ${result.time} | <span style="color:${css}">${result.code}</span></li>`
     }
 
     return  `<ul>${html}</ul>`;
@@ -37,9 +37,15 @@ module.exports.requestGroupActions = [
                     for (const request of requests) {
                         // Call the request
                         let response = await context.network.sendRequest(request);
-
+                        
+                        // Response is in milliseconds but we need it in seconds
+						let time = (Math.round(response.elapsedTime/10)/100).toString()
+						
+                        // We want to have 2 decimal but round deletes last 0
+						if (time.length == 3) { time += '0'; }
+						
                         // Push result into return array
-                        results.push({'name' : request.name, 'code' : response.statusCode});
+                        results.push({'name' : request.name, 'code' : response.statusCode, 'time' : time});
                     }
                 }
 
